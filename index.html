@@ -70,7 +70,7 @@
         .btn { padding: 12px 30px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; background: #3b82f6; color: white; width: 100%; margin-top: 10px; }
         .btn-green { background: #16a34a; }
         .rainbow-grid { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; padding: 10px 0; width: 100%; }
-        .rainbow-box { width: 52px; height: 70px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: bold; color: white; text-transform: uppercase; flex-shrink: 0; }
+        .rainbow-box { width: 52px; height: 70px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; color: white; text-transform: uppercase; flex-shrink: 0; }
         .race-letter-box { width: 85px; height: 85px; background: #f1f5f9; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; border: 2px solid #cbd5e1; flex-direction: column; text-align: center; padding: 2px; }
         
         /* WAVE 4 Inline Target Box */
@@ -153,7 +153,7 @@
     <div id="start-menu">
         <div id="buster-bubble" class="speech-bubble">Glad you're here, Partner! Things are starting to heat up.</div>
         <div class="buster-character" style="font-size: 80px;">🧯</div>
-        <div id="story-text" style="color: #94a3b8; font-style: italic; font-size: 14px; margin-bottom: 15px;">Buster’s pressure gauge locks firmly into the green. He is fully charged and primed for combat.</div>
+        <div id="story-text" style="color: #94a3b8; font-style: italic; font-size: 20px; margin-bottom: 15px;">Buster’s pressure gauge locks firmly into the green. He is fully charged and primed for combat.</div>
         <button class="btn" id="story-btn" onclick="nextStoryStep()">NEXT</button>
         <button class="btn" id="start-mission-btn" style="background:#16a34a; display:none;" onclick="startGame()">IGNITE MISSION!</button>
     </div>
@@ -189,7 +189,7 @@
             <div class="part-target" data-answer="PIN" style="top:-7px; left:115px;"></div>
             <div class="part-indicator" style="top:45px; left:180px;"></div>
             <div class="part-line" style="top:46px; left:188px; width:41px; transform:rotate(-20deg);"></div>
-            <div class="part-target" data-answer="LEVER" style="top:15px; left:227px;"></div>
+            <div class="part-target" data-answer="LEVER" style="top:1px; left:227px;"></div>
             <div class="part-indicator" style="top:75px; left:175px;"></div>
             <div class="part-line" style="top:77px; left:179px; width:50px; transform:rotate(10deg);"></div>
             <div class="part-target" data-answer="HANDLE" style="top:60px; left:228px;"></div>
@@ -236,7 +236,7 @@
         <div id="grid-content-ui" style="display:none;">
             <div style="margin: 15px 0;">
                 <div class="dr-item" id="person-logic" style="font-size:45px; cursor:grab; border:2px solid #3b82f6; display:inline-block; padding:10px; border-radius:50%; background:white; touch-action:none;">🚶</div>
-                <div style="font-size: 10px; color: #2563eb; font-weight: bold; margin-top: 5px;">Drag me to safety</div>
+                <div style="font-size: 20px; color: #2563eb; font-weight: bold; margin-top: 5px;">Drag me to safety</div>
             </div>
             <div class="choice-grid" id="main-drop-grid"></div>
         </div>
@@ -250,7 +250,7 @@
         <div id="s4-content-ui" style="display:none;">
             <p style="font-size: 20px; margin-bottom: 20px;">What is the correct sequence to activate the extinguisher? Drag and drop the labels into the correct boxes.</p>
             
-            <div style="text-align:left; font-size:14px; background:#f8fafc; padding:20px; border-radius:12px; color:black; line-height:3.0;">
+            <div style="text-align:left; font-size:20px; background:#f8fafc; padding:20px; border-radius:12px; color:black; line-height:3.0;">
                 Pull the <div class="part-target pass-target-box" data-answer="PIN"></div>,<br>
                 Aim the <div class="part-target pass-target-box" data-answer="NOZZLE"></div> at the base,<br>
                 Squeeze the <div class="part-target pass-target-box" data-answer="LEVER"></div>,<br>
@@ -720,7 +720,7 @@
     function drawRace() {
         const raceData = [
             {l:'R', t:'Rescue 🚑', a:['Rescue 🚑'], opts: ['Rescue 🚑', 'Run 🏃', 'Remove 🗑️', 'Rest 💤']},
-            {l:'A', t:'Alarm 🔔', a:['Alarm 🔔'], opts: ['Alarm 🔔', 'Attack 👊', 'Alert 🚨', 'Aim 🎯']},
+            {l:'A', t:'Alarm 🔔', a:['Alarm  🔔'], opts: ['Alarm 🔔', 'Attack 👊', 'Alert 🚨', 'Aim 🎯']},
             {l:'C', t:'Contain 🛡️', a:['Contain 🛡️'], opts: ['Contain 🛡️', 'Confine 🔒', 'Connect 🔗', 'Cover 🙊']},
             {l:'E', t:'Evacuate 🏃', a:['Evacuate 🏃'], opts: ['Extinguish 🧯', 'Evacuate 🏃', 'Eat 🍎', 'Exit 🚪']}
         ];
