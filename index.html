@@ -25,7 +25,7 @@
         .main-controls { width: 95%; max-width: 800px; margin-bottom: 10px; display: none; gap: 10px; align-items: center; background: #1e293b; padding: 10px; border-radius: 12px; justify-content: space-between; z-index: 10; }
         canvas { width: 100%; height: auto; border: 4px solid #334155; background-color: #55b5d9; border-radius: 12px; cursor: crosshair; touch-action: none; }
         
-        #gameplay-tip { color: #fbbf24; font-size: 18px; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; animation: pulse 1.5s infinite; text-align: center; width: 100%; }
+        #gameplay-tip { color: #fbbf24; font-size: 15px; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; animation: pulse 1.5s infinite; text-align: center; width: 100%; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
         .progress-container { width: 90%; height: 10px; background: #334155; border-radius: 10px; margin: 10px auto; overflow: hidden; }
@@ -68,7 +68,7 @@
         .btn { padding: 12px 30px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; background: #3b82f6; color: white; width: 100%; margin-top: 10px; }
         .btn-green { background: #16a34a; }
         .rainbow-grid { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; padding: 10px 0; width: 100%; }
-        .rainbow-box { width: 52px; height: 70px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; color: white; text-transform: uppercase; flex-shrink: 0; }
+        .rainbow-box { width: 52px; height: 70px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: bold; color: white; text-transform: uppercase; flex-shrink: 0; }
         .race-letter-box { width: 85px; height: 85px; background: #f1f5f9; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 2px solid #cbd5e1; flex-direction: column; text-align: center; padding: 2px; }
         
         .pass-target-box { 
@@ -160,7 +160,7 @@
     <div id="game-section">
         <div id="gameplay-tip">Tap or Hold to Extinguish the Fire</div>
         <div id="major-blaze-box">
-            <div style="font-weight: bold; background: rgba(0,0,0,0.7); padding: 10px; border-radius: 5px; font-size: 15px;">⚠️ MEGA BLAZE ⚠️</div>
+            <div style="font-weight: bold; background: rgba(0,0,0,0.7); padding: 10px; border-radius: 5px; font-size: 12px;">⚠️ MEGA BLAZE ⚠️</div>
             <div id="final-meter-container"><div id="final-meter-fill"></div></div>
         </div>
         <canvas id="gameCanvas"></canvas>
