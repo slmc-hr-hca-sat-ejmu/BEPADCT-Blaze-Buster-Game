@@ -6,14 +6,14 @@
     <style>
         body { margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background-color: #0f172a; font-family: 'Segoe UI', sans-serif; color: #f7fafc; overflow: hidden; touch-action: none; user-select: none; }
         
-        #pre-game-box, #player-form-box, #start-menu, .checkpoint-box, #buster-comment-box, #buster-error-box { 
+        #pre-game-box, #player-form-box, #start-menu, .checkpoint-box, #buster-comment-box, #buster-error-box, #dyk-box { 
             text-align: center; background: #1e293b; padding: 30px; border-radius: 20px; 
             box-shadow: 0 15px 35px rgba(0,0,0,0.5); width: 85%; max-width: 450px; z-index: 100;
         }
-        #player-form-box, #start-menu, #game-section, .checkpoint-box, #buster-comment-box, #buster-error-box { display: none; }
+        #player-form-box, #start-menu, #game-section, .checkpoint-box, #buster-comment-box, #buster-error-box, #dyk-box { display: none; }
 
         .form-group { margin-bottom: 15px; text-align: left; }
-        .form-group label { display: block; font-size: 12px; color: #60a5fa; margin-bottom: 5px; font-weight: bold; }
+        .form-group label { display: block; font-size: 20px; color: #60a5fa; margin-bottom: 5px; font-weight: bold; }
         .form-group select, .form-group input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: white; box-sizing: border-box; }
 
         .play-icon-btn, .buster-character { font-size: 100px; cursor: pointer; animation: buster-bounce 2s infinite ease-in-out; display: inline-block; }
@@ -25,7 +25,7 @@
         .main-controls { width: 95%; max-width: 800px; margin-bottom: 10px; display: none; gap: 10px; align-items: center; background: #1e293b; padding: 10px; border-radius: 12px; justify-content: space-between; z-index: 10; }
         canvas { width: 100%; height: auto; border: 4px solid #334155; background-color: #55b5d9; border-radius: 12px; cursor: crosshair; touch-action: none; }
         
-        #gameplay-tip { color: #fbbf24; font-size: 12px; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; animation: pulse 1.5s infinite; text-align: center; width: 100%; }
+        #gameplay-tip { color: #fbbf24; font-size: 20px; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; animation: pulse 1.5s infinite; text-align: center; width: 100%; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
         .progress-container { width: 90%; height: 10px; background: #334155; border-radius: 10px; margin: 10px auto; overflow: hidden; }
@@ -41,73 +41,60 @@
         .part-indicator { position: absolute; width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; z-index: 5; }
         .part-line { position: absolute; background: #3b82f6; height: 2px; transform-origin: left center; z-index: 4; }
         
-        /* WAVE 1 Style Targets */
         .part-target { 
             position: absolute; border: 2px dashed #3b82f6; background: rgba(59, 130, 246, 0.1); border-radius: 4px; 
             width: 75px; height: 35px; display: flex; align-items: center; justify-content: center; 
-            font-size: 8px; text-align: center; font-weight: bold; z-index: 6; 
+            font-size: 20px; text-align: center; font-weight: bold; z-index: 6; 
         }
         
-        .filled-correct { background: #1e3a8a !important; color: white !important; border-style: solid !important; border-width: 1px !important; font-size: 8px !important; }
+        .filled-correct { background: #1e3a8a !important; color: white !important; border-style: solid !important; border-width: 1px !important; font-size: 20px !important; }
         .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
         
-        /* SMALLER Choices for easier fitting */
-        .choice-box-uniform { padding: 10px; background: #2563eb; color: white; border-radius: 8px; cursor: pointer; font-size: 10px; font-weight: bold; text-align: center; }
+        .choice-box-uniform { padding: 10px; background: #2563eb; color: white; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold; text-align: center; }
         
-        .race-choice { font-size: 16px !important; padding: 15px !important; }
+        .race-choice { font-size: 20px !important; padding: 15px !important; }
 
-        .drop-zone { border: 2px dashed #94a3b8; border-radius: 10px; padding: 10px; background: #f1f5f9; min-height: 50px; font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .drop-zone { border: 2px dashed #94a3b8; border-radius: 10px; padding: 10px; background: #f1f5f9; min-height: 50px; font-size: 20px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
         .filled-correct-grid { background: #dcfce7 !important; border: 2px solid #16a34a !important; color: #166534 !important; }
         
         .iphone-frame { width: 180px; height: 350px; background: #1c1c1e; border-radius: 30px; border: 6px solid #334155; margin: 0 auto; position: relative; padding: 10px; }
         .iphone-screen { background: #000; height: 100%; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .iphone-display { color: #fff; font-size: 18px; margin-bottom: 15px; min-height: 24px; text-align: center; width: 100%; }
+        .iphone-display { color: #fff; font-size: 20px; margin-bottom: 15px; min-height: 24px; text-align: center; width: 100%; }
         .iphone-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
         .iphone-key { width: 38px; height: 38px; background: #3a3a3c; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
         .iphone-call { width: 45px; height: 45px; background: #34c759; color: white; border-radius: 50%; border: none; margin-top: 10px; cursor: pointer; }
-        .iphone-del { width: 38px; height: 38px; background: #ef4444; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 12px; }
+        .iphone-del { width: 38px; height: 38px; background: #ef4444; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 20px; }
 
         .btn { padding: 12px 30px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; background: #3b82f6; color: white; width: 100%; margin-top: 10px; }
         .btn-green { background: #16a34a; }
         .rainbow-grid { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; padding: 10px 0; width: 100%; }
-        .rainbow-box { width: 52px; height: 70px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; color: white; text-transform: uppercase; flex-shrink: 0; }
+        .rainbow-box { width: 52px; height: 70px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; color: white; text-transform: uppercase; flex-shrink: 0; }
         .race-letter-box { width: 85px; height: 85px; background: #f1f5f9; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; border: 2px solid #cbd5e1; flex-direction: column; text-align: center; padding: 2px; }
         
-        /* WAVE 4 Inline Target Box */
         .pass-target-box { 
             display: inline-flex !important; position: static !important; 
             width: 80px !important; height: 32px !important; 
             border: 2px dashed #3b82f6; background: rgba(59, 130, 246, 0.05); 
             border-radius: 4px; vertical-align: middle; margin: 0 4px;
-            align-items: center; justify-content: center; font-size: 9px !important;
+            align-items: center; justify-content: center; font-size: 20px !important;
         }
 
         #buster-error-box { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); display: none; z-index: 5000; width: 90%; max-width: 400px; border: 4px solid #ef4444; }
 
         #audio-control {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            width: 45px;
-            height: 45px;
-            background: #1e293b;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 9999;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-            border: 2px solid #334155;
+            position: fixed; top: 15px; right: 15px; width: 45px; height: 45px;
+            background: #1e293b; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; cursor: pointer;
+            z-index: 9999; box-shadow: 0 5px 15px rgba(0,0,0,0.4); border: 2px solid #334155;
         }
+        #audio-control:hover { transform: scale(1.05); }
+        #audio-icon { font-size: 20px; }
 
-        #audio-control:hover {
-            transform: scale(1.05);
-        }
-
-        #audio-icon {
-            font-size: 20px;
-        }
+        /* DYK Fact Box Styles */
+        .fact-title { color: #fbbf24; font-size: 22px; font-weight: bold; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .fact-body { text-align: left; font-size: 20px; line-height: 1.6; color: #cbd5e1; background: #0f172a; padding: 15px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #fbbf24; }
+        .fact-body ul { margin: 5px 0 0 0; padding-left: 20px; }
+        .fact-body li { margin-bottom: 5px; }
     </style>
 </head>
 <body>
@@ -145,13 +132,20 @@
     </div>
 
     <div id="buster-error-box">
-        <div class="speech-bubble" style="background: #fee2e2; color: #991b1b;" id="buster-error-text">Whoops! That's not quite right, Partner. Try again!</div>
+        <div class="speech-bubble" style="background: #fee2e2; color: #991b1b;" id="buster-error-text">Whoops! That's not quite right, Team. Try again!</div>
         <div class="buster-character" style="font-size: 60px;">🧯</div>
         <button class="btn btn-green" onclick="closeError()">TRY AGAIN</button>
     </div>
 
+    <div id="dyk-box">
+        <div class="fact-title">💡 DID YOU KNOW?</div>
+        <div id="dyk-content" class="fact-body"></div>
+        <div class="buster-character" style="font-size: 50px; margin-bottom: 10px;">🧯</div>
+        <button class="btn btn-green" onclick="dismissDyk()">OK</button>
+    </div>
+
     <div id="start-menu">
-        <div id="buster-bubble" class="speech-bubble">Glad you're here, Partner! Things are starting to heat up.</div>
+        <div id="buster-bubble" class="speech-bubble">Glad you're here, Team! Things are starting to heat up.</div>
         <div class="buster-character" style="font-size: 80px;">🧯</div>
         <div id="story-text" style="color: #94a3b8; font-style: italic; font-size: 20px; margin-bottom: 15px;">Buster’s pressure gauge locks firmly into the green. He is fully charged and primed for combat.</div>
         <button class="btn" id="story-btn" onclick="nextStoryStep()">NEXT</button>
@@ -166,7 +160,7 @@
     <div id="game-section">
         <div id="gameplay-tip">Tap or Hold to Extinguish the Fire</div>
         <div id="major-blaze-box">
-            <div style="font-weight: bold; background: rgba(0,0,0,0.7); padding: 10px; border-radius: 5px; font-size: 14px;">⚠️ MEGA BLAZE ⚠️</div>
+            <div style="font-weight: bold; background: rgba(0,0,0,0.7); padding: 10px; border-radius: 5px; font-size: 20px;">⚠️ MEGA BLAZE ⚠️</div>
             <div id="final-meter-container"><div id="final-meter-fill"></div></div>
         </div>
         <canvas id="gameCanvas"></canvas>
@@ -181,7 +175,7 @@
 
     <div id="quiz-section" class="checkpoint-box">
         <h3>Prep Your Gear</h3>
-        <p id="s1-text" style="font-size: 20px;">You’re walking the hallway and see a small trash fire. You grab the nearest extinguisher. You need to know your tools before you act.</p>
+        <p id="s1-text" style="font-size: 20px;">You’re walking the hallway and see a small trash on fire. You grab the nearest extinguisher. You need to know your tools before you act.</p>
         <button id="get-ext-btn" class="btn" onclick="revealS1Diagram()">I'M READY</button>
         <div class="diagram-wrapper" id="s1-diagram">
             <div class="part-indicator" style="top:62px; left:146px;"></div>
@@ -204,7 +198,7 @@
             <div class="part-target" data-answer="NOZZLE" style="top:235px; left:-10px;"></div>
         </div>
         <div class="choice-grid" id="s1-choices" style="display:none;"></div>
-        <button id="quizReturnBtn" class="btn btn-green" style="display:none;" onclick="showBusterComment()">GRAB IT & GO</button>
+        <button id="quizReturnBtn" class="btn btn-green" style="display:none;" onclick="showDykIntercept()">GRAB IT & GO</button>
     </div>
 
     <div id="phone-section" class="checkpoint-box">
@@ -226,7 +220,7 @@
                 </div>
             </div>
         </div>
-        <button id="phoneReturnBtn" class="btn btn-green" style="display:none;" onclick="showBusterComment()">REPORTED</button>
+        <button id="phoneReturnBtn" class="btn btn-green" style="display:none;" onclick="showDykIntercept()">REPORTED</button>
     </div>
 
     <div id="grid-stage-section" class="checkpoint-box">
@@ -240,7 +234,7 @@
             </div>
             <div class="choice-grid" id="main-drop-grid"></div>
         </div>
-        <button id="gridNextBtn" class="btn btn-green" style="display:none;" onclick="showBusterComment()">STAYING SAFE</button>
+        <button id="gridNextBtn" class="btn btn-green" style="display:none;" onclick="showDykIntercept()">STAYING SAFE</button>
     </div>
 
     <div id="pass-section" class="checkpoint-box">
@@ -267,14 +261,14 @@
         <div id="logic-desc"></div>
         <button id="logic-start-btn" class="btn" onclick="startLogicTask()">PROCEED</button>
         <div id="logic-body"></div>
-        <button id="logicNextBtn" class="btn btn-green" style="display:none;" onclick="showBusterComment()">CONTINUE</button>
+        <button id="logicNextBtn" class="btn btn-green" style="display:none;" onclick="showDykIntercept()">CONTINUE</button>
     </div>
 
     <div id="congrats" class="checkpoint-box">
         <div class="buster-character" style="font-size: 80px;">🧯</div>
         <h1 style="color:#2563eb; margin-top: 10px;">MISSION ACCOMPLISHED! 🏆</h1>
-        <div id="final-congrats-bubble" class="speech-bubble">Great work, Partner! You've mastered the fire safety protocols. Now, let's get you that certificate!</div>
-        <div style="text-align: left; font-size: 13px; padding: 15px; background: #f8fafc; border-radius: 10px; border-left: 4px solid #3b82f6; margin-bottom: 15px;">
+        <div id="final-congrats-bubble" class="speech-bubble">Great work, Team! You've mastered the fire safety protocols. Now, let's get you that certificate!</div>
+        <div style="text-align: left; font-size: 20px; padding: 15px; background: #f8fafc; border-radius: 10px; border-left: 4px solid #3b82f6; margin-bottom: 15px;">
             <p>To claim your certificate:</p>
             <p>1. Click <b>REVEAL MY CODE</b>.<br>2. <b>Copy</b> the code from the new tab.<br>3. <b>Paste</b> it into your verification form.</p>
         </div>
@@ -301,25 +295,36 @@
         "Backup is on the way! While they're coming, let’s keep this flame contained.",
         "Phew, that was a big one. Ground is steady—back to the fire!",
         "Perfect aim! You've got the rhythm down. Now let's see those skills in action!",
-        "Protocol followed! You're saving lives out here, Partner.",
-        "Hazard reported! The cleanup crew is on the way. Focus back on the flames!",
-        "Exits are secured. Good call on that Pink code, Partner!",
+        "Protocol followed! You're saving lives out here, Team.",
+        "Hazard reported! The Spill Responders are on the way. Focus back on the flames!",
+        "Exits are secured. Good call on handling that threat, Team!",
         "Security is responding. You kept your cool! Let's finish the job.",
         "Solid leadership! You found the safe zone for the QC team.",
         "Safe and sound! You led the Global City team to the exit."
     ];
 
     const storySteps = [
-        { bubble: "Code Orange is in effect. We’ve got multiple hotspots threatening the medical wards that need our attention.", narrative: "The scent of ozone fills the air as emergency lights strobe across the floor." },
+        { bubble: "Code Orange is in effect. We’ve got multiple hotspots threatening the hospital that need our attention.", narrative: "The scent of ozone fills the air as emergency lights strobe across the floor." },
         { bubble: "I’ve got the suppression foam ready to go, but I’m relying on your steady hand to guide the nozzle.", narrative: "He gives a metallic rattle, his safety pin trembling with anticipation." },
         { bubble: "I'll handle the pressure, you handle the aim. Let’s work together to keep the facility safe.", narrative: "Buster shakes with excitement (and high-pressure gas)." },
-        { bubble: "If we clear these 10 waves, we can break this blaze. Let’s get to work, Colleague!", narrative: "The mission is live: St. Luke's is counting on your reflexes." }
+        { bubble: "If we clear these 10 waves, we can break this blaze. Let’s get to work, Team!", narrative: "The mission is live: St. Luke's is counting on your reflexes." }
     ];
     let storyIndex = 0;
 
+    const dykFacts = {
+        1: "<b>Green Clean Agent (HCFC-123)</b> extinguishers leave zero chemical residue and are perfectly non-conductive, making them ideal for areas with sensitive hospital electronics, computer servers, and medical equipment.<br><br><b>Red Dry Chemical</b> extinguishers are highly versatile for broad fire fighting but release a fine, corrosive powder that can damage nearby delicate clinical hardware.",
+        2: "Severe weather or structural ruptures can lead to internal facility <b>Floods</b>, which fall strictly under the <b>Code ORANGE</b> deployment rules.<br><br>In a flood scenario, safety teams immediately assess rising waters for potential electrical safety hazards and prepare secondary barriers to protect critical mechanical basements.",
+        3: "A <b>Radiation Leak</b> inside imaging hubs or laboratory research units is an invisible emergency managed entirely via <b>Code ORANGE</b> configurations.<br><br>First-line protocol centers on structural containment and dynamic isolation barriers to neutralize spreading isotopes safely.",
+        6: "<b>Code ORANGE</b> at St. Luke's encompasses multiple technical and natural disasters including Fire, Earthquakes, Chemical Spills, Bomb Threats, Radiation Leaks, Gas Leaks, and Floods.<br><br>When a hazardous material spill occurs, activating Code Orange brings the specific Spill Response Team immediately to the location.",
+        7: "Even though <b>Bomb Threats</b> don't immediately present a visible fire or seismic tremor, they fall strictly under the <b>Code ORANGE</b> umbrella because they threaten structural facility security and require systematic, coordinated deployment protocols across the medical campus.",
+        8: "A toxic or flammable <b>Gas Leak</b> represents an invisible threat capable of compounding instantly. It requires an immediate <b>Code ORANGE</b> broadcast to ensure isolation mechanics, system shutoffs, and immediate ward safety procedures are triggered.",
+        9: "<b>Quezon City Campus Designated Safe Assembly Areas:</b><ul><li>MAB Parking Area</li><li>Street fronting multi-level parking</li><li>Sta. Ignaciana Street fronting SS entrance and exit</li><li>Sta. Ignaciana Street fronting College of Medicine</li><li>Episcopal/TUA property episcopal church and lawn</li></ul>",
+        10: "<b>Global City Campus Designated Safe Assembly Areas:</b><ul><li>Rizal Drive across Main Lobby</li><li>34th Street</li></ul>"
+    };
+
     function triggerErr() {
         const msgs = [
-            "Whoops! That's not the right move, Partner. Try again!",
+            "Whoops! That's not the right move, Team. Try again!",
             "Careful! We need to follow the protocol exactly. Let's try that one more time.",
             "Not quite! Remember your training. Give it another shot!",
             "Buster says: 'Check your steps!' Let's try again."
@@ -328,16 +333,15 @@
         document.getElementById('buster-error-box').style.display = 'block';
     }
 
-    function closeError() {
-        document.getElementById('buster-error-box').style.display = 'none';
-    }
-
+    function closeError() { document.getElementById('buster-error-box').style.display = 'none'; }
     function showForm() { document.getElementById('pre-game-box').style.display = 'none'; document.getElementById('player-form-box').style.display = 'block'; }
+    
     function validate() {
         const loc = document.getElementById('user-location').value;
         const id = document.getElementById('user-id').value.trim();
         document.getElementById('form-submit-btn').style.opacity = (loc && id) ? "1" : "0.5";
     }
+    
     function saveDetails() {
         if(document.getElementById('form-submit-btn').style.opacity !== "1") return;
         playerID = document.getElementById('user-id').value;
@@ -345,6 +349,7 @@
         document.getElementById('player-form-box').style.display = 'none';
         document.getElementById('start-menu').style.display = 'block';
     }
+    
     function nextStoryStep() {
         if(storyIndex < storySteps.length) {
             document.getElementById('buster-bubble').innerText = storySteps[storyIndex].bubble;
@@ -447,7 +452,6 @@
 
         document.addEventListener("pointerup", (e) => {
             if (!activeItem) return;
-            
             activeItem.style.pointerEvents = 'auto';
 
             const itemRect = activeItem.getBoundingClientRect();
@@ -459,8 +463,7 @@
             
             targets.forEach(t => {
                 const rect = t.getBoundingClientRect();
-                const buffer = 40; // Increased buffer for low-error snapping
-                
+                const buffer = 40;
                 if (itemX > rect.left - buffer && itemX < rect.right + buffer && 
                     itemY > rect.top - buffer && itemY < rect.bottom + buffer) {
                     snappingTarget = t;
@@ -469,22 +472,17 @@
 
             if (snappingTarget) {
                 const itemText = activeItem.innerText.trim();
-
-                // WAVE 1 & WAVE 4: UNIFIED Logic
                 if (snappingTarget.classList.contains("part-target")) {
                     if (snappingTarget.dataset.answer === itemText) {
                         snappingTarget.innerText = itemText; 
                         snappingTarget.classList.add("filled-correct"); 
                         activeItem.style.display = "none";
                         
-                        // Check Wave 1 Diagram
                         if (wavesCleared === 0 && document.querySelectorAll('#s1-diagram .filled-correct').length === 6) 
                             document.getElementById("quizReturnBtn").style.display = "block";
                         
-                        // Check Wave 4 PASS (matching Wave 1 logic)
                         if (wavesCleared === 3 && document.querySelectorAll('#pass-section .filled-correct').length === 4)
                             document.getElementById("passReturnBtn").style.display = "block";
-
                     } else { triggerErr(); }
                 }
                 else if (snappingTarget.classList.contains("drop-zone")) {
@@ -545,6 +543,27 @@
         else if(wave === 8) setupS6(8);
         else if(wave === 9) setupGrid(9);
         else if(wave === 10) setupGrid(10);
+    }
+
+    /* INTERCEPTOR TRANSITIONS TO INJECT POPUPS */
+    function showDykIntercept() {
+        const currentWave = wavesCleared + 1;
+        document.getElementById('quiz-section').style.display = 'none';
+        document.getElementById('phone-section').style.display = 'none';
+        document.getElementById('grid-stage-section').style.display = 'none';
+        document.getElementById('logic-box').style.display = 'none';
+
+        if (dykFacts[currentWave]) {
+            document.getElementById('dyk-content').innerHTML = dykFacts[currentWave];
+            document.getElementById('dyk-box').style.display = 'block';
+        } else {
+            showBusterComment();
+        }
+    }
+
+    function dismissDyk() {
+        document.getElementById('dyk-box').style.display = 'none';
+        showBusterComment();
     }
 
     function showBusterComment() {
@@ -625,14 +644,14 @@
             document.getElementById("grid-instr").innerText="The fire in the Main Building has grown too large. The order comes over the radio: EVACUATE. You are in the St. Luke's Quezon City campus and need to lead people to the street.";
             document.getElementById("grid-start-btn").innerText = "MOVING TO ASSEMBLY AREA";
             document.getElementById("gridNextBtn").innerText = "MOVING TO SAFETY";
-            items=[{t:"Sta. Ignaciana St.",c:true},{t:"MAB Parking",c:false},{t:"E. Rodriguez Lobby",c:false},{t:"Canteen Entrance",c:false}];
+            items=[{t:"Sta. Ignaciana St.",c:true},{t:"MAB Parking",c:true},{t:"E. Rodriguez Lobby",c:false},{t:"Canteen Entrance",c:false}];
         } 
         else if(stg===10) { 
             document.getElementById("grid-title").innerText="Get Out (St. Luke's Medical Center - Global City)"; 
             document.getElementById("grid-instr").innerText="You are now at the St. Luke's Global City campus. You must lead your team out of the building to the designated outdoor safe zone.";
             document.getElementById("grid-start-btn").innerText = "MOVING TO ASSEMBLY AREA";
             document.getElementById("gridNextBtn").innerText = "MOVING TO SAFETY";
-            items=[{t:"Rizal Drive",c:true},{t:"High Street",c:false},{t:"34th Street",c:false},{t:"Parking B1",c:false}];
+            items=[{t:"Rizal Drive",c:true},{t:"High Street",c:false},{t:"34th Street",c:true},{t:"Parking B1",c:false}];
         }
 
         items.sort(()=>Math.random()-0.5).forEach(i => {
@@ -648,10 +667,10 @@
              document.getElementById("grid-instr").innerText = "Earthquake! Drop the extinguisher and protect yourself. What are the three steps to safety? You must drag the person to the correct sequence during an earthquake.";
         }
         else if(wavesCleared === 8) { 
-            document.getElementById("grid-instr").innerText = "You are at the hospital canteen. You need to lead the people to the nearest safe assembly area for the St. Luke's Quezon City? You must drag the person below to safety.";
+            document.getElementById("grid-instr").innerText = "You are at the hospital canteen. You need to lead the people to a safe designated assembly area for the St. Luke's Quezon City. Drag the person below to a correct assembly target.";
         } 
         else if(wavesCleared === 9) { 
-            document.getElementById("grid-instr").innerText = "You are at the 5th floor main building when the alarms scream. You need to lead the people to the nearest safe assembly area for St. Luke's Global City? You must drag the person below to safety.";
+            document.getElementById("grid-instr").innerText = "You are at the 5th floor main building when the alarms scream. You need to lead the people to a safe designated assembly area for St. Luke's Global City. Drag the person below to a correct assembly target.";
         }
     }
 
@@ -659,7 +678,11 @@
         if (trg.dataset.correct === "true") {
             if(trg.dataset.step !== undefined && parseInt(trg.dataset.step) !== gStep) { triggerErr(); return; }
             trg.classList.add("filled-correct-grid"); gStep++;
-            if(document.querySelectorAll('#grid-stage-section .drop-zone[data-correct="true"]').length === gStep) document.getElementById("gridNextBtn").style.display="block";
+            
+            let totalNeeded = 1;
+            if(wavesCleared === 2) totalNeeded = 3; 
+
+            if(gStep >= totalNeeded) document.getElementById("gridNextBtn").style.display="block";
         } else { triggerErr(); }
     }
 
@@ -690,7 +713,7 @@
         document.getElementById("logic-desc").innerHTML = `
             <p style="font-size:20px; color:#1e293b; line-height:1.4;">
                 You’ve reached a patient room and see smoke. Before you even touch the fire, 
-                you have to follow the safety rule of hospital safety to keep everyone alive.
+                you have to follow the safety rule of the hospital safety to keep everyone alive.
             </p>`;
         document.getElementById("logic-start-btn").innerText = 'SAFETY RULE';
         document.getElementById("logic-start-btn").style.display = 'block';
@@ -720,9 +743,9 @@
     function drawRace() {
         const raceData = [
             {l:'R', t:'Rescue 🚑', a:['Rescue 🚑'], opts: ['Rescue 🚑', 'Run 🏃', 'Remove 🗑️', 'Rest 💤']},
-            {l:'A', t:'Alarm 🔔', a:['Alarm  🔔'], opts: ['Alarm 🔔', 'Attack 👊', 'Alert 🚨', 'Aim 🎯']},
-            {l:'C', t:'Contain 🛡️', a:['Contain 🛡️'], opts: ['Contain 🛡️', 'Confine 🔒', 'Connect 🔗', 'Cover 🙊']},
-            {l:'E', t:'Evacuate 🏃', a:['Evacuate 🏃'], opts: ['Extinguish 🧯', 'Evacuate 🏃', 'Eat 🍎', 'Exit 🚪']}
+            {l:'A', t:'Alarm 🔔', a:['Alarm 🔔'], opts: ['Alarm 🔔', 'Attack 👊', 'Alert 🚨', 'Aim 🎯']},
+            {l:'C', t:'Contain 🛡️', a:['Contain 🛡️'], opts: ['Contain 🛡️', 'Cry 😭', 'Connect 🔗', 'Cover 🙊']},
+            {l:'E', t:'Extinguish 🧯', a:['Extinguish 🧯'], opts: ['Extinguish 🧯', 'Eavesdrop 🏃', 'Eat 🍎', 'Exit 🚪']}
         ];
         const o = document.getElementById("logic-body"); 
         o.innerHTML = `<div style="display:flex; justify-content:center; gap:5px; margin-bottom:15px;">` + 
@@ -772,7 +795,7 @@
     function setupS6(s) {
         document.getElementById("logic-box").style.display = 'block'; 
         document.getElementById("logic-start-btn").style.display = 'block';
-        document.getElementById("logic-start-btn").innerText = "CODE SHOULD BE ACTIVATED";
+        document.getElementById("logic-start-btn").innerText = "ACTIVATE SYSTEM PROTOCOL";
         document.getElementById("logic-body").style.display = 'none';
         document.getElementById("logicNextBtn").style.display = "none";
         
@@ -781,29 +804,29 @@
         
         if (s === 6) { 
             title = "The Chemical Spill"; 
-            scenarioText = "While moving through the ward, you spot a broken container of chemotherapy drugs leaking across the floor. This isn't a normal fire; it’s a hazardous spill.";
-            desc = "Which emergency color code warns the hospital team about a Hazardous Material Spill? You must tap the correct code to be activated.";
+            scenarioText = "While moving through the laboratory, you spot a broken container of Formaldehyde leaking across the floor. This requires a site-wide disaster/hazard activation.";
+            desc = "Which emergency color code warns the hospital team about a Disaster / Hazardous Material Spill? Tap the correct code option.";
             winC = "Orange"; 
             btnTxt = "CODE ACTIVATED";
         } else if (s === 7) { 
-            title = "Security Alert"; 
-            scenarioText = "A frantic nurse shouts that a baby is missing and a stranger was seen near the elevators. You need to trigger a lockdown immediately.";
-            desc = "What is the specific code for a Missing Child/Abduction? You must tap the correct code to be activated.";
-            winC = "Pink"; 
-            btnTxt = "SECURE THE EXITS";
+            title = "Security Alert: Threat Assessment"; 
+            scenarioText = "An administrator contacts your area warning that an anonymous call was received claiming an explosive device was left within the complex.";
+            desc = "Under St. Luke's protocols, which code covers a Bomb Threat situation? Tap the correct code option.";
+            winC = "Orange"; 
+            btnTxt = "DISASTER CONTEXT RESPONDED";
         } else if (s === 8) { 
-            title = "Immediate Danger"; 
-            scenarioText = "You hear a commotion in the lobby. A person with a weapon is acting aggressively. You need to call for security and police backup without delay.";
-            desc = "Which code do you call for an Active Shooter or Armed Threat? You must tap the correct code to be activated.";
-            winC = "Silver"; 
-            btnTxt = "CALL FOR HELP";
+            title = "Immediate Structural Danger"; 
+            scenarioText = "A main pipeline connector in the utility wall fractures, pouring highly pressurized gas into the hallway corridor.";
+            desc = "Which code covers a hazardous Gas Leak incident inside the campus? Tap the correct code option.";
+            winC = "Orange"; 
+            btnTxt = "SYSTEM ISOLATED";
         }
         
         document.getElementById("logic-title").innerText = title;
         document.getElementById("logic-desc").innerHTML = `
             <p style="font-size:20px; color:#1e293b; line-height:1.4; margin-bottom:10px;">${scenarioText}</p>
             <div id="logic-question-area" style="display:none;">
-                <p style="font-size:20px; font-weight:bold; color:#2563eb;">${desc}</p>
+                <p style="font-size:15px; font-weight:bold; color:#2563eb;">${desc}</p>
             </div>
         `;
         document.getElementById("logicNextBtn").innerText = btnTxt;
