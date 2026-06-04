@@ -229,7 +229,7 @@
         <button id="grid-start-btn" class="btn" onclick="startGridTask()">PROTECT YOURSELF</button>
         <div id="grid-content-ui" style="display:none;">
             <div style="margin: 15px 0;">
-                <div class="dr-item" id="person-logic" style="font-size:45px; cursor:grab; border:2px solid #3b82f6; display:inline-block; padding:10px; border-radius:50%; background:white; touch-action:none;">🚶</div>
+                <div class="dr-item" id="person-logic" style="display:inline-block; font-size:40px; cursor:grab; touch-action:none;">🚶</div>
                 <div style="font-size: 18px; color: #2563eb; font-weight: bold; margin-top: 5px;">Drag me to safety</div>
             </div>
             <div class="choice-grid" id="main-drop-grid"></div>
@@ -321,7 +321,7 @@
         7: "Even though <b>Bomb Threats</b> don't immediately present a visible fire or seismic tremor, they fall strictly under the <b><span style='color: orange;'>Code ORANGE</span></b> umbrella because they threaten structural facility security and require systematic, coordinated deployment protocols across the medical campus.",
         8: "A toxic or flammable <b>Gas Leak</b> represents an invisible threat capable of compounding instantly. It requires an immediate <b><span style='color: orange;'>Code ORANGE</span></b> broadcast to ensure isolation mechanics, system shutoffs, and immediate ward safety procedures are triggered.",
         9: "<b>Quezon City Campus Designated Safe Assembly Areas:</b><ul><li>Sta. Ignaciana Street fronting SS entrance and exit</li><li>Sta. Ignaciana Street fronting College of Medicine</li><li>MAB Parking Area</li><li>Street fronting multi-level parking</li><li>Episcopal/TUA property episcopal church and lawn</li></ul>",
-        10: "<b>Global City Campus Designated Safe Assembly Areas:</b><ul><li>Rizal Drive across Main Lobby</li><li>34th Street</li></ul>"
+        10: "<b>Global City Campus Designated Safe Assembly Areas:</b><ul><li>Rizal Drive across Main Lobby</li><li>34th Street</li></ul><br><b style='color: #fbbf24;'>St. Luke's Resource Center:</b><ul><li>Negros St.</li></ul>"
     };
 
     function triggerErr() {
@@ -434,7 +434,12 @@
             if (e.target.classList.contains("dr-item")) {
                 activeItem = e.target; 
                 const rect = activeItem.getBoundingClientRect();
-                shiftX = rect.width / 2; shiftY = rect.height / 2;
+                shiftX = e.clientX - rect.left; shiftY = e.clientY - rect.top;
+                
+                activeItem.style.boxSizing = 'border-box';
+                activeItem.style.width = rect.width + 'px';
+                activeItem.style.height = rect.height + 'px';
+                activeItem.style.margin = '0';
                 
                 activeItem.style.position = 'fixed'; 
                 activeItem.style.zIndex = 2000;
@@ -495,6 +500,12 @@
             if (activeItem) {
                 activeItem.style.position = 'static'; 
                 activeItem.style.zIndex = '';
+                
+                activeItem.style.width = '';
+                activeItem.style.height = '';
+                activeItem.style.margin = '';
+                activeItem.style.boxSizing = '';
+                
                 activeItem = null;
             }
         });
@@ -530,13 +541,11 @@
 
     function triggerMajorBlaze() { majorBlazeActive = true; bossHealth = 100; bossX = 900; document.getElementById('major-blaze-box').style.display = 'block'; }
 
-    // PIPELINE CRITICAL FIX: Routing chain handles scenario modules seamlessly without overlap artifacts
     function triggerCheckpoint() {
         gameActive = false; currentScore = 0;
         document.getElementById('game-section').style.display = 'none';
         document.getElementById('major-blaze-box').style.display = 'none';
         
-        // Wipe away all modules to force clean scenario entry states
         document.getElementById('quiz-section').style.display = 'none';
         document.getElementById('phone-section').style.display = 'none';
         document.getElementById('grid-stage-section').style.display = 'none';
@@ -557,11 +566,9 @@
         else if(wave === 10) setupGrid(10);
     }
 
-    // INTERCEPT PANEL: Ran seamlessly inside the state loop to load trivia cards directly after questions register safe complete states
     function showDykIntercept() {
         const currentWave = wavesCleared + 1;
         
-        // Enforce safety cleanups across all windows
         document.getElementById('quiz-section').style.display = 'none';
         document.getElementById('phone-section').style.display = 'none';
         document.getElementById('grid-stage-section').style.display = 'none';
@@ -630,7 +637,6 @@
     }
 
     function setupS1() { 
-        // Fixed typo error where '.style.block' broke script compilation pathing
         document.getElementById('quiz-section').style.display = 'block'; 
         document.getElementById('get-ext-btn').style.display = 'block';
         document.getElementById('s1-diagram').style.display = 'none';
