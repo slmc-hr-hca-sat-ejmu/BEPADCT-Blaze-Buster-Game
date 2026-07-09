@@ -6,11 +6,19 @@
     <style>
         body { margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background-color: #0f172a; font-family: 'Segoe UI', sans-serif; color: #f7fafc; overflow: hidden; touch-action: none; user-select: none; }
         
-        #pre-game-box, #player-form-box, #start-menu, .checkpoint-box, #buster-comment-box, #buster-error-box, #dyk-box { 
+        #checklist-box, #pre-game-box, #player-form-box, #start-menu, .checkpoint-box, #buster-comment-box, #buster-error-box, #dyk-box { 
             text-align: center; background: #1e293b; padding: 30px; border-radius: 20px; 
             box-shadow: 0 15px 35px rgba(0,0,0,0.5); width: 85%; max-width: 450px; z-index: 100;
         }
-        #player-form-box, #start-menu, #game-section, .checkpoint-box, #buster-comment-box, #buster-error-box, #dyk-box { display: none; }
+        #pre-game-box, #player-form-box, #start-menu, #game-section, .checkpoint-box, #buster-comment-box, #buster-error-box, #dyk-box { display: none; }
+
+        /* Checklist Styles */
+        .checklist-group { text-align: left; margin-bottom: 15px; background: #0f172a; padding: 15px; border-radius: 10px; border: 1px solid #334155; display: flex; align-items: flex-start; gap: 12px; }
+        .checklist-group input[type="checkbox"] { width: 22px; height: 22px; margin-top: 2px; cursor: pointer; flex-shrink: 0; }
+        .checklist-group label { font-size: 14px; color: #cbd5e1; cursor: pointer; line-height: 1.4; }
+        .checklist-group b { color: #60a5fa; }
+        .checklist-optional { border: 1px dashed #4b5563; background: rgba(30, 41, 59, 0.5); }
+        .checklist-optional b { color: #fbbf24; }
 
         .form-group { margin-bottom: 15px; text-align: left; }
         .form-group label { display: block; font-size: 15px; color: #60a5fa; margin-bottom: 5px; font-weight: bold; }
@@ -105,6 +113,31 @@
     <audio id="bgMusic" loop>
         <source src="Skyward_Ascent.mp3" type="audio/mpeg">
     </audio>
+
+    <div id="checklist-box">
+        <h2 style="color: #60a5fa; margin-top: 0; letter-spacing: 1px;">📋 PRE-GAME CHECKLIST</h2>
+        <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">Please confirm the following settings to ensure your mission progress and certificate code are generated correctly:</p>
+        
+        <div class="checklist-group">
+            <input type="checkbox" id="chk-browser" onchange="validateChecklist()">
+            <label for="chk-browser">I am playing using <b>Google Chrome</b>.</label>
+        </div>
+        <div class="checklist-group">
+            <input type="checkbox" id="chk-account" onchange="validateChecklist()">
+            <label for="chk-account">My browser is currently logged into my <b>SLMC corporate Google account</b>.</label>
+        </div>
+        <div class="checklist-group">
+            <input type="checkbox" id="chk-link" onchange="validateChecklist()">
+            <label for="chk-link">The game link is opened directly in a browser app (<b>NOT inside the Viber, Facebook, or Mail chat window view</b>).</label>
+        </div>
+        
+        <div class="checklist-group checklist-optional">
+            <input type="checkbox" id="chk-music" checked>
+            <label for="chk-music">Play epic background music during my response mission. <b>(Optional)</b></label>
+        </div>
+        
+        <button class="btn" id="checklist-btn" style="opacity: 0.5; background: #3b82f6;" onclick="proceedToPreGame()" disabled>CONFIRM & PROCEED</button>
+    </div>
 
     <div id="pre-game-box">
         <h1 style="color: #60a5fa; margin-bottom: 10px;">Blaze Buster</h1>
@@ -324,6 +357,45 @@
         10: "<b>Global City Campus Designated Safe Assembly Areas:</b><ul><li>Rizal Drive across Main Lobby</li><li>34th Street</li></ul><br><b style='color: #fbbf24;'>St. Luke's Resource Center:</b><ul><li>Negros St.</li></ul>"
     };
 
+    /* Checklist Logic */
+    function validateChecklist() {
+        const c1 = document.getElementById('chk-browser').checked;
+        const c2 = document.getElementById('chk-account').checked;
+        const c3 = document.getElementById('chk-link').checked;
+        const btn = document.getElementById('checklist-btn');
+        
+        // Gated explicitly on technical criteria (c1, c2, c3). chk-music is excluded here so it remains entirely optional!
+        if(c1 && c2 && c3) {
+            btn.style.opacity = "1";
+            btn.disabled = false;
+        } else {
+            btn.style.opacity = "0.5";
+            btn.disabled = true;
+        }
+    }
+
+    function proceedToPreGame() {
+        const audioIcon = document.getElementById("audio-icon");
+        const bgMusic = document.getElementById("bgMusic");
+        const playMusicPreference = document.getElementById('chk-music').checked;
+
+        if (playMusicPreference) {
+            bgMusic.volume = 0.5;
+            bgMusic.play().then(() => {
+                audioIcon.innerText = "🔊";
+            }).catch(() => {
+                // If a restrictive browser environment blocks autoplay on form gesture, handle cleanly
+                audioIcon.innerText = "🔇";
+            });
+        } else {
+            bgMusic.pause();
+            audioIcon.innerText = "🔇";
+        }
+
+        document.getElementById('checklist-box').style.display = 'none';
+        document.getElementById('pre-game-box').style.display = 'block';
+    }
+
     function triggerErr() {
         const msgs = [
             "Whoops! That's not the right move, Team. Try again!",
@@ -414,6 +486,7 @@
         fires.push({ x: canvas.width + 50, y: 80 + Math.random() * 160, size: 45 + Math.random() * 25, alive: true });
     }
 
+    /* Input Controls */
     function initControls() {
         const handleMove = (e) => {
             if(!gameActive) return;
@@ -917,27 +990,14 @@
         window.open(targetUrl, "_blank");
     }
 
-    let audioEnabled = false;
     const bgMusic = document.getElementById("bgMusic");
     const audioIcon = document.getElementById("audio-icon");
 
-    function startAudioOnce() {
-        if (!audioEnabled) {
-            bgMusic.volume = 0.5;
-            bgMusic.play().then(() => {
-                audioEnabled = true;
-                audioIcon.innerText = "🔊";
-            }).catch(() => {});
-        }
-    }
-
-    document.addEventListener("click", startAudioOnce, { once: true });
-    document.addEventListener("touchstart", startAudioOnce, { once: true });
-
     function toggleAudio() {
         if (bgMusic.paused) {
-            bgMusic.play();
-            audioIcon.innerText = "🔊";
+            bgMusic.play().then(() => {
+                audioIcon.innerText = "🔊";
+            }).catch(() => {});
         } else {
             bgMusic.pause();
             audioIcon.innerText = "🔇";
