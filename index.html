@@ -7,43 +7,46 @@
         body { margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background-color: #0f172a; font-family: 'Segoe UI', sans-serif; color: #f7fafc; overflow: hidden; touch-action: none; user-select: none; }
         
         #checklist-box, #pre-game-box, #player-form-box, #start-menu, .checkpoint-box, #buster-comment-box, #buster-error-box, #dyk-box { 
-            text-align: center; background: #1e293b; padding: 30px; border-radius: 20px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5); width: 85%; max-width: 450px; z-index: 100; box-sizing: border-box;
+            text-align: center; background: #1e293b; padding: 25px 20px; border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5); width: 90%; max-width: 450px; z-index: 100; box-sizing: border-box;
         }
         #pre-game-box, #player-form-box, #start-menu, #game-section, .checkpoint-box, #buster-comment-box, #buster-error-box, #dyk-box { display: none; }
 
-        /* Checklist Styles */
-        .checklist-group { text-align: left; margin-bottom: 12px; background: #0f172a; padding: 12px; border-radius: 10px; border: 1px solid #334155; display: flex; align-items: flex-start; gap: 10px; box-sizing: border-box; }
-        .checklist-group input[type="checkbox"] { width: 20px; height: 20px; margin-top: 2px; cursor: pointer; flex-shrink: 0; }
-        .checklist-group label { font-size: 14px; color: #cbd5e1; cursor: pointer; line-height: 1.4; }
+        /* Checklist Component Styles */
+        .checklist-group { text-align: left; margin-bottom: 12px; background: #0f172a; padding: 14px; border-radius: 10px; border: 1px solid #334155; display: flex; align-items: flex-start; gap: 12px; box-sizing: border-box; }
+        .checklist-group input[type="checkbox"] { width: 24px; height: 24px; margin-top: 1px; cursor: pointer; flex-shrink: 0; }
+        .checklist-group label { font-size: 15px; color: #cbd5e1; cursor: pointer; line-height: 1.4; }
         .checklist-group b { color: #60a5fa; }
         .checklist-optional { border: 1px dashed #4b5563; background: rgba(30, 41, 59, 0.4); }
         .checklist-optional b { color: #fbbf24; }
 
         .form-group { margin-bottom: 15px; text-align: left; }
-        .form-group label { display: block; font-size: 15px; color: #60a5fa; margin-bottom: 5px; font-weight: bold; }
-        .form-group select, .form-group input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: white; box-sizing: border-box; }
+        .form-group label { display: block; font-size: 15px; color: #60a5fa; margin-bottom: 6px; font-weight: bold; }
+        .form-group select, .form-group input { width: 100%; padding: 14px 12px; font-size: 15px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: white; box-sizing: border-box; }
 
         .play-icon-btn, .buster-character { font-size: 100px; cursor: pointer; animation: buster-bounce 2s infinite ease-in-out; display: inline-block; }
         @keyframes buster-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
         
-        .speech-bubble { background: #ffffff; color: #1e293b; padding: 20px; border-radius: 15px; margin: 20px auto; position: relative; font-weight: bold; }
+        .speech-bubble { background: #ffffff; color: #1e293b; padding: 20px; border-radius: 15px; margin: 20px auto; position: relative; font-weight: bold; font-size: 16px; line-height: 1.4; }
         .speech-bubble:after { content: ''; position: absolute; bottom: -15px; left: 50%; border-width: 15px 15px 0; border-style: solid; border-color: #ffffff transparent; display: block; width: 0; margin-left: -15px; }
 
-        .main-controls { width: 95%; max-width: 800px; margin-bottom: 10px; display: none; gap: 10px; align-items: center; background: #1e293b; padding: 10px; border-radius: 12px; justify-content: space-between; z-index: 10; }
+        .main-controls { width: 95%; max-width: 800px; margin-bottom: 10px; display: none; gap: 10px; align-items: center; background: #1e293b; padding: 12px; border-radius: 12px; justify-content: space-between; z-index: 10; box-sizing: border-box; }
+        #status-text, #wave-text { font-size: 16px; }
         canvas { width: 100%; height: auto; border: 4px solid #334155; background-color: #55b5d9; border-radius: 12px; cursor: crosshair; touch-action: none; }
         
         #gameplay-tip { color: #fbbf24; font-size: 15px; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; animation: pulse 1.5s infinite; text-align: center; width: 100%; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
-        .progress-container { width: 90%; height: 10px; background: #334155; border-radius: 10px; margin: 10px auto; overflow: hidden; }
+        .progress-container { width: 90%; height: 12px; background: #334155; border-radius: 10px; margin: 12px auto; overflow: hidden; }
         .progress-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #60a5fa, #3b82f6); transition: width 0.3s; }
         
         #major-blaze-box { display: none; color: #ef4444; padding: 10px; border-radius: 10px; position: absolute; top: 250px; left: 50%; transform: translateX(-50%); z-index: 50; text-align: center; }
         #final-meter-container { width: 150px; height: 12px; background: #334155; border-radius: 6px; overflow: hidden; margin: 5px auto; border: 1px solid white; }
         #final-meter-fill { width: 100%; height: 100%; background: #ef4444; }
 
-        .checkpoint-box { background: white; color: #1e293b; max-height: 90vh; overflow-y: auto; }
+        .checkpoint-box { background: white; color: #1e293b; max-height: 92vh; overflow-y: auto; }
+        .checkpoint-box h3 { font-size: 22px; margin-top: 5px; }
+        .checkpoint-box p { font-size: 16px !important; line-height: 1.5; }
         
         .diagram-wrapper { position: relative; width: 300px; height: 350px; background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpPUDif2LkKX4bx3_sXJquY6_nF20kS_56aw&s'); background-size: contain; background-repeat: no-repeat; background-position: center; margin: 0 auto; display: none; }
         .part-indicator { position: absolute; width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; z-index: 5; }
@@ -52,39 +55,39 @@
         .part-target { 
             position: absolute; border: 2px dashed #3b82f6; background: rgba(59, 130, 246, 0.1); border-radius: 4px; 
             width: 75px; height: 35px; display: flex; align-items: center; justify-content: center; 
-            font-size: 18px; text-align: center; font-weight: bold; z-index: 6; 
+            font-size: 16px; text-align: center; font-weight: bold; z-index: 6; 
         }
         
-        .filled-correct { background: #1e3a8a !important; color: white !important; border-style: solid !important; border-width: 1px !important; font-size: 13px !important; }
-        .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+        .filled-correct { background: #1e3a8a !important; color: white !important; border-style: solid !important; border-width: 1px !important; font-size: 12px !important; }
+        .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
         
-        .choice-box-uniform { padding: 10px; background: #2563eb; color: white; border-radius: 8px; cursor: pointer; font-size: 10px; font-weight: bold; text-align: center; }
+        .choice-box-uniform { padding: 12px 8px; background: #2563eb; color: white; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; text-align: center; box-sizing: border-box; display: flex; align-items: center; justify-content: center; min-height: 44px; }
         
-        .race-choice { font-size: 18px !important; padding: 15px !important; }
+        .race-choice { font-size: 18px !important; padding: 14px !important; }
 
-        .drop-zone { border: 2px dashed #94a3b8; border-radius: 10px; padding: 10px; background: #f1f5f9; min-height: 50px; font-size: 18px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .drop-zone { border: 2px dashed #94a3b8; border-radius: 10px; padding: 12px 8px; background: #f1f5f9; min-height: 55px; font-size: 16px; display: flex; align-items: center; justify-content: center; font-weight: bold; box-sizing: border-box; }
         .filled-correct-grid { background: #dcfce7 !important; border: 2px solid #16a34a !important; color: #166534 !important; }
         
-        .iphone-frame { width: 180px; height: 350px; background: #1c1c1e; border-radius: 30px; border: 6px solid #334155; margin: 0 auto; position: relative; padding: 10px; }
-        .iphone-screen { background: #000; height: 100%; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .iphone-display { color: #fff; font-size: 18px; margin-bottom: 15px; min-height: 24px; text-align: center; width: 100%; }
+        .iphone-frame { width: 190px; height: 360px; background: #1c1c1e; border-radius: 30px; border: 6px solid #334155; margin: 0 auto; position: relative; padding: 10px; box-sizing: border-box; }
+        .iphone-screen { background: #000; height: 100%; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 5px; box-sizing: border-box; }
+        .iphone-display { color: #fff; font-size: 20px; margin-bottom: 15px; min-height: 26px; text-align: center; width: 100%; font-weight: bold; }
         .iphone-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-        .iphone-key { width: 38px; height: 38px; background: #3a3a3c; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-        .iphone-call { width: 45px; height: 45px; background: #34c759; color: white; border-radius: 50%; border: none; margin-top: 10px; cursor: pointer; }
-        .iphone-del { width: 38px; height: 38px; background: #ef4444; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; }
+        .iphone-key { width: 42px; height: 42px; background: #3a3a3c; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; font-weight: bold; }
+        .iphone-call { width: 48px; height: 48px; background: #34c759; color: white; border-radius: 50%; border: none; margin-top: 12px; cursor: pointer; font-size: 18px; }
+        .iphone-del { width: 42px; height: 42px; background: #ef4444; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; font-weight: bold; }
 
-        .btn { padding: 12px 30px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; background: #3b82f6; color: white; width: 100%; margin-top: 10px; }
+        .btn { padding: 14px 30px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 16px; background: #3b82f6; color: white; width: 100%; margin-top: 12px; box-sizing: border-box; }
         .btn-green { background: #16a34a; }
-        .rainbow-grid { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; padding: 10px 0; width: 100%; }
-        .rainbow-box { width: 52px; height: 70px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; color: white; text-transform: uppercase; flex-shrink: 0; }
-        .race-letter-box { width: 85px; height: 85px; background: #f1f5f9; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 2px solid #cbd5e1; flex-direction: column; text-align: center; padding: 2px; }
+        .rainbow-grid { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 12px 0; width: 100%; box-sizing: border-box; }
+        .rainbow-box { width: 56px; height: 70px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; color: white; text-transform: uppercase; flex-shrink: 0; }
+        .race-letter-box { width: 85px; height: 85px; background: #f1f5f9; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 2px solid #cbd5e1; flex-direction: column; text-align: center; padding: 4px; box-sizing: border-box; }
         
         .pass-target-box { 
             display: inline-flex !important; position: static !important; 
-            width: 80px !important; height: 32px !important; 
+            width: 85px !important; height: 34px !important; 
             border: 2px dashed #3b82f6; background: rgba(59, 130, 246, 0.05); 
             border-radius: 4px; vertical-align: middle; margin: 0 4px;
-            align-items: center; justify-content: center; font-size: 18px !important;
+            align-items: center; justify-content: center; font-size: 16px !important;
         }
 
         #buster-error-box { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); display: none; z-index: 5000; width: 90%; max-width: 400px; border: 4px solid #ef4444; }
@@ -99,10 +102,10 @@
         #audio-icon { font-size: 18px; }
 
         /* DYK Fact Box Styles */
-        .fact-title { color: #fbbf24; font-size: 20px; font-weight: bold; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .fact-body { text-align: left; font-size: 12px; line-height: 1.6; color: #cbd5e1; background: #0f172a; padding: 15px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #fbbf24; }
+        .fact-title { color: #fbbf24; font-size: 22px; font-weight: bold; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .fact-body { text-align: left; font-size: 14px; line-height: 1.6; color: #cbd5e1; background: #0f172a; padding: 15px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #fbbf24; }
         .fact-body ul { margin: 5px 0 0 0; padding-left: 20px; }
-        .fact-body li { margin-bottom: 5px; }
+        .fact-body li { margin-bottom: 6px; }
     </style>
 </head>
 <body>
@@ -115,8 +118,8 @@
     </audio>
 
     <div id="checklist-box">
-        <h2 style="color: #60a5fa; margin-top: 0; letter-spacing: 1px;">📋 PRE-GAME CHECKLIST</h2>
-        <p style="color: #94a3b8; font-size: 14px; margin-bottom: 18px; line-height: 1.4;">Please confirm your environment configurations to prevent tracking issues and reward verification conflicts upon simulation wrap-up:</p>
+        <h2 style="color: #60a5fa; margin-top: 0; letter-spacing: 1px; font-size: 22px;">📋 PRE-GAME CHECKLIST</h2>
+        <p style="color: #94a3b8; font-size: 15px; margin-bottom: 20px; line-height: 1.4;">Please confirm your environment configurations to prevent tracking issues and reward verification conflicts upon simulation wrap-up:</p>
         
         <div class="checklist-group">
             <input type="checkbox" id="chk-browser" onchange="validateChecklist()">
@@ -140,13 +143,13 @@
     </div>
 
     <div id="pre-game-box">
-        <h1 style="color: #60a5fa; margin-bottom: 10px;">Blaze Buster</h1>
+        <h1 style="color: #60a5fa; margin-bottom: 10px; font-size: 32px;">Blaze Buster</h1>
         <div class="play-icon-btn" onclick="showForm()">🧯</div>
-        <div style="color: #ef4444; font-weight: bold; margin-top: 15px;">TAP BUSTER TO START</div>
+        <div style="color: #ef4444; font-weight: bold; margin-top: 15px; font-size: 18px; letter-spacing: 1px;">TAP BUSTER TO START</div>
     </div>
 
     <div id="player-form-box">
-        <h2 style="color: #60a5fa; margin-top:0; text-align: center;">PLAYER DETAILS</h2>
+        <h2 style="color: #60a5fa; margin-top:0; text-align: center; font-size: 24px;">PLAYER DETAILS</h2>
         <div class="form-group">
             <label>I AM FROM ST. LUKE'S MEDICAL CENTER</label>
             <select id="user-location" onchange="validate()">
@@ -180,7 +183,7 @@
     <div id="start-menu">
         <div id="buster-bubble" class="speech-bubble">Glad you're here, Team! Things are starting to heat up.</div>
         <div class="buster-character" style="font-size: 80px;">🧯</div>
-        <div id="story-text" style="color: #94a3b8; font-style: italic; font-size: 18px; margin-bottom: 15px;">Buster’s pressure gauge locks firmly into the green. He is fully charged and primed for combat.</div>
+        <div id="story-text" style="color: #94a3b8; font-style: italic; font-size: 16px; margin-bottom: 15px; line-height: 1.4;">Buster’s pressure gauge locks firmly into the green. He is fully charged and primed for combat.</div>
         <button class="btn" id="story-btn" onclick="nextStoryStep()">NEXT</button>
         <button class="btn" id="start-mission-btn" style="background:#16a34a; display:none;" onclick="startGame()">IGNITE MISSION!</button>
     </div>
@@ -208,7 +211,7 @@
 
     <div id="quiz-section" class="checkpoint-box">
         <h3>Prep Your Gear</h3>
-        <p id="s1-text" style="font-size: 18px;">You’re walking the hallway and see a small trash on fire. You grab the nearest extinguisher. You need to know your tools before you act.</p>
+        <p id="s1-text">You’re walking the hallway and see a small trash on fire. You grab the nearest extinguisher. You need to know your tools before you act.</p>
         <button id="get-ext-btn" class="btn" onclick="revealS1Diagram()">I'M READY</button>
         <div class="diagram-wrapper" id="s1-diagram">
             <div class="part-indicator" style="top:62px; left:146px;"></div>
@@ -236,17 +239,17 @@
 
     <div id="phone-section" class="checkpoint-box">
         <h3>Call for Backup</h3>
-        <p id="s2-desc" style="font-size: 18px;">You’ve got the extinguisher, but you can’t fight a hospital fire alone. Protocols say you must alert the team while you prepare to fight.</p>
+        <p id="s2-desc">You’ve got the extinguisher, but you can’t fight a hospital fire alone. Protocols say you must alert the team while you prepare to fight.</p>
         <button id="s2-start-btn" class="btn" onclick="document.getElementById('s2-desc').style.display='none'; this.style.display='none'; document.getElementById('s2-phone-ui').style.display='block';">GRAB THE UNIT PHONE</button>
         <div id="s2-phone-ui" style="display:none;">
-            <p style="font-size: 18px;">Quick! Dial the St. Luke’s Emergency Hotline to bring the professionals to your floor. You must dial the correct number on the keypad and call.</p>
+            <p style="font-size: 16px; line-height: 1.4; margin-bottom: 15px;">Quick! Dial the St. Luke’s Emergency Hotline to bring the professionals to your floor. You must dial the correct number on the keypad and call.</p>
             <div class="iphone-frame">
                 <div class="iphone-screen">
                     <div class="iphone-display" id="phone-display"></div>
                     <div class="iphone-grid">
                         <div class="iphone-key" onclick="pressKey('1')">1</div><div class="iphone-key" onclick="pressKey('2')">2</div><div class="iphone-key" onclick="pressKey('3')">3</div>
                         <div class="iphone-key" onclick="pressKey('4')">4</div><div class="iphone-key" onclick="pressKey('5')">5</div><div class="iphone-key" onclick="pressKey('6')">6</div>
-                        <div class="iphone-key" onclick="pressKey('7')">7</div><div class="iphone-key" onclick="pressKey('8')">8</div><div class="iphone-key" onclick="pressKey('9')">9</div>
+                        <div class="iphone-key" onclick="pressKey('7')">7</div><div class="iphone-key" onclick="pressKey('8') text">8</div><div class="iphone-key" onclick="pressKey('9')">9</div>
                         <div class="iphone-del" onclick="delKey()">DEL</div><div class="iphone-key" onclick="pressKey('0')">0</div><div class="iphone-key" onclick="pressKey('#')">#</div>
                     </div>
                     <button class="iphone-call" onclick="makeCall()">📞</button>
@@ -257,8 +260,8 @@
     </div>
 
     <div id="grid-stage-section" class="checkpoint-box">
-        <h2 id="grid-title"></h2>
-        <p id="grid-instr" style="font-size: 18px;"></p>
+        <h2 id="grid-title" style="font-size: 22px; margin-top: 5px;"></h2>
+        <p id="grid-instr"></p>
         <button id="grid-start-btn" class="btn" onclick="startGridTask()">PROTECT YOURSELF</button>
         <div id="grid-content-ui" style="display:none;">
             <div style="margin: 15px 0;">
@@ -272,10 +275,10 @@
 
     <div id="pass-section" class="checkpoint-box">
         <h3>The Final Stand</h3>
-        <p id="s4-desc" style="font-size: 18px;">The shaking stops. The fire is still there and growing. It’s now or never. Use the extinguisher correctly, show us you know the right steps to stop the blaze before it reaches the patient rooms.</p>
+        <p id="s4-desc">The shaking stops. The fire is still there and growing. It’s now or never. Use the extinguisher correctly, show us you know the right steps to stop the blaze before it reaches the patient rooms.</p>
         <button id="s4-start-btn" class="btn" onclick="startPassTask()">STOP THE BLAZE</button>
         <div id="s4-content-ui" style="display:none;">
-            <p style="font-size: 16px; margin-bottom: 20px;">What is the correct sequence to activate the extinguisher? Drag and drop the labels into the correct boxes.</p>
+            <p style="font-size: 16px; margin-bottom: 20px; line-height: 1.4;">What is the correct sequence to activate the extinguisher? Drag and drop the labels into the correct boxes.</p>
             
             <div style="text-align:left; font-size:16px; background:#f8fafc; padding:15px; border-radius:12px; color:black; line-height:3.2; box-sizing: border-box;">
                 Pull the <div class="part-target pass-target-box" data-answer="PIN"></div>,<br>
@@ -290,7 +293,7 @@
     </div>
 
     <div id="logic-box" class="checkpoint-box">
-        <h2 id="logic-title"></h2>
+        <h2 id="logic-title" style="font-size: 22px; margin-top: 5px;"></h2>
         <div id="logic-desc"></div>
         <button id="logic-start-btn" class="btn" onclick="startLogicTask()">PROCEED</button>
         <div id="logic-body"></div>
@@ -299,9 +302,9 @@
 
     <div id="congrats" class="checkpoint-box">
         <div class="buster-character" style="font-size: 80px;">🧯</div>
-        <h1 style="color:#2563eb; margin-top: 10px; font-size: 24px;">MISSION ACCOMPLISHED! 🏆</h1>
+        <h1 style="color:#2563eb; margin-top: 10px; font-size: 26px;">MISSION ACCOMPLISHED! 🏆</h1>
         <div id="final-congrats-bubble" class="speech-bubble">Great work, Team! You've mastered the BEPADCT protocols. Now, let's get you that certificate!</div>
-        <div style="text-align: left; font-size: 15px; padding: 15px; background: #f8fafc; border-radius: 10px; border-left: 4px solid #3b82f6; margin-bottom: 15px; line-height: 1.4; color: #1e293b;">
+        <div style="text-align: left; font-size: 15px; line-height: 1.5; padding: 15px; background: #f8fafc; border-radius: 10px; border-left: 4px solid #3b82f6; margin-bottom: 15px; color: #1e293b;">
             <p style="margin-top: 0; font-weight: bold; color: #2563eb;">To claim your certificate:</p>
             <p style="margin-bottom: 0;">1. Click <b>REVEAL MY CODE</b>.<br>2. <b>Copy</b> the code from the new tab.<br>3. <b>Paste</b> it into your verification form.</p>
         </div>
@@ -373,39 +376,30 @@
         }
     }
 
-    // IMMUNE AND SANDBOXED TRANSITION TRIGGER
     function proceedToPreGame() {
-        // Step 1: Execute layout display mutation instantly before handling audio subsystems
+        const audioIcon = document.getElementById("audio-icon");
+        const bgMusic = document.getElementById("bgMusic");
+        const playMusicPreference = document.getElementById('chk-music').checked;
+
+        if (playMusicPreference) {
+            bgMusic.volume = 0.5;
+            var p = bgMusic.play();
+            if (p && typeof p.then === 'function') {
+                p.then(function() {
+                    audioIcon.innerText = "🔊";
+                }).catch(function() {
+                    audioIcon.innerText = "🔇";
+                });
+            } else {
+                audioIcon.innerText = "🔊";
+            }
+        } else {
+            bgMusic.pause();
+            audioIcon.innerText = "🔇";
+        }
+
         document.getElementById('checklist-box').style.display = 'none';
         document.getElementById('pre-game-box').style.display = 'block';
-
-        // Step 2: Wrap media actions inside a try-catch architecture to guarantee page swapping
-        try {
-            const audioIcon = document.getElementById("audio-icon");
-            const bgMusic = document.getElementById("bgMusic");
-            const playMusicPreference = document.getElementById('chk-music').checked;
-
-            if (playMusicPreference && bgMusic) {
-                bgMusic.volume = 0.5;
-                var p = bgMusic.play();
-                if (p !== undefined && typeof p.then === 'function') {
-                    p.then(function() {
-                        audioEnabled = true;
-                        if (audioIcon) audioIcon.innerText = "🔊";
-                    }).catch(function() {
-                        if (audioIcon) audioIcon.innerText = "🔇";
-                    });
-                } else {
-                    audioEnabled = true;
-                    if (audioIcon) audioIcon.innerText = "🔊";
-                }
-            } else {
-                if (bgMusic) bgMusic.pause();
-                if (audioIcon) audioIcon.innerText = "🔇";
-            }
-        } catch (audioException) {
-            console.warn("Autoplay initialization bypassed seamlessly:", audioException);
-        }
     }
 
     function triggerErr() {
@@ -740,7 +734,7 @@
         document.getElementById("logic-box").style.display = 'block'; 
         document.getElementById("logic-title").innerText = "The Life-Saving Checklist"; 
         document.getElementById("logic-desc").innerHTML = `
-            <p style="font-size:18px; color:#1e293b; line-height:1.4;">
+            <p style="font-size:16px; color:#1e293b; line-height:1.5;">
                 You’ve reached a patient room and see smoke. Before you even touch the fire, 
                 you have to follow the safety rule of the hospital safety to keep everyone alive.
             </p>`;
